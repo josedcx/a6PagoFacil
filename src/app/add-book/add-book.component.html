@@ -1,0 +1,40 @@
+<div class="col-md-6">
+  <h2 class="text-center">Agregar Libro</h2>
+
+  <form  #form=ngForm [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="autor">Autor:</label>
+      <input formControlName="autor" placeholder="Autor" name="autor" class="form-control" id="autor" [ngClass]="{ 'is-invalid': f.autor.errors }" >
+      <div *ngIf="f.autor.errors" class="invalid-feedback">
+        <div *ngIf="f.autor.errors.required">El autor es requerido</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input formControlName="nombre" placeholder="Nombre" name="nombre" class="form-control" id="nombre" [ngClass]="{ 'is-invalid': f.nombre.errors }" >
+      <div *ngIf="f.nombre.errors" class="invalid-feedback">
+        <div *ngIf="f.nombre.errors.required">El nombre es requerido</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="resumen">Resumen:</label>
+      <input formControlName="resumen" placeholder="Resumen" name="resumen" class="form-control" id="resumen" [ngClass]="{ 'is-invalid': f.resumen.errors }" >
+      <div *ngIf="f.resumen.errors" class="invalid-feedback">
+        <div *ngIf="f.resumen.errors.required">El resumen es requerido</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="edicion">Edición:</label>
+      <input formControlName="edicion" placeholder="Edicion" name="edicion" class="form-control" id="edicion" [ngClass]="{ 'is-invalid': f.edicion.errors }" >
+      <div *ngIf="f.edicion.errors" class="invalid-feedback">
+        <div *ngIf="f.edicion.errors.required">El edicion es requerido</div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-dark" (click)="goBack()" style="margin-right: 15px;">< Back</button>
+    <button class="btn btn-success"  [disabled]="!form.valid">Agregar</button>
+  </form>
+</div>

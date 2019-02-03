@@ -1,0 +1,36 @@
+<p>
+    <button class="btn btn-dark float-right" [routerLink]="['/login']"> Cerrar Sesión</button>
+</p>
+<h1>Listado de Libros</h1>
+<p>Ahora que haz iniciado sesión puedes agregar, editar o eliminar el directorio de libros.</p>
+
+
+<div class="col-md-12">
+    <button class="btn btn-primary" (click)="addBook()"> Agregar Libro</button>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th hidden>Id</th>
+            <th>Autor</th>
+            <th>Nombre</th>
+            <th>Resumen</th>
+            <th>Edición</th>
+            <th>Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let book of books">
+            <td hidden>{{book.id}}</td>
+            <td>{{book.autor}}</td>
+            <td>{{book.nombre}}</td>
+            <td>{{book.resumen}}</td>
+            <td>{{book.edicion}}</td>
+            <td>
+                <button class="btn btn-warning" (click)="editBook(book)" style="margin-right: 20px;"> Editar</button>
+                <button class="btn btn-danger" (click)="deleteBook(book)"> Eliminar</button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
