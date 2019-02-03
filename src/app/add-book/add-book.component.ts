@@ -1,44 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { BookService } from '../_services';
-import { first } from "rxjs/operators";
-import { Router } from "@angular/router";
-import { Location } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {BookService} from '../_services';
+import {first} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {Location} from '@angular/common';
 @Component({
-  selector: 'app-add-book',
-  templateUrl: './add-book.component.html',
-  styleUrls: ['./add-book.component.css']
+    selector: 'app-add-book',
+    templateUrl: './add-book.component.html',
+    styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent implements OnInit {
-  submitted = false;
-  constructor(private formBuilder: FormBuilder,
-              private router: Router,
-              private location: Location,
-              private bookService: BookService) { }
+    submitted = false;
 
-  addForm: FormGroup;
+    constructor(private formBuilder: FormBuilder,
+                private router: Router,
+                private location: Location,
+                private bookService: BookService) {
+    }
 
-  ngOnInit() {
+    addForm: FormGroup;
 
-    this.addForm = this.formBuilder.group({
-      edicion: ['', Validators.required],
-      resumen: ['', Validators.required],
-      autor: ['', Validators.required],
-      nombre: ['', Validators.required]
-    });
+    ngOnInit() {
 
-  }
-
-  get f() { return this.addForm.controls; }
-
-  onSubmit() {
-    this.bookService.createBook(this.addForm.value)
-        .subscribe( data => {
-          this.router.navigate(['booklists']);
+        this.addForm = this.formBuilder.group({
+            edicion: ['', Validators.required],
+            resumen: ['', Validators.required],
+            autor: ['', Validators.required],
+            nombre: ['', Validators.required]
         });
-  }
 
-  goBack() {
-    this.location.back();
-  }
+    }
+
+    get f() {
+        return this.addForm.controls;
+    }
+
+    onSubmit() {
+        this.bookService.createBook(this.addForm.value)
+            .subscribe(data => {
+                this.router.navigate(['booklists']);
+            });
+    }
+
+    goBack() {
+        this.location.back();
+    }
 }

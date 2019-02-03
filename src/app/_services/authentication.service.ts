@@ -1,13 +1,18 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AuthenticationService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
+    // Se realiza la petición al WS para el login y se almacena el token en localStorage.
     login(username: string, password: string) {
-        return this.http.post<any>('https://d7ka3nqya8.execute-api.us-east-2.amazonaws.com/dev/login', { username, password })
+        return this.http.post<any>('https://d7ka3nqya8.execute-api.us-east-2.amazonaws.com/dev/login', {
+            username,
+            password
+        })
             .pipe(map(user => {
                 if (user && user.usuario['access_token']) {
                     localStorage.setItem('currentUser', user.usuario['access_token']);
@@ -15,6 +20,7 @@ export class AuthenticationService {
                 return user;
             }));
     }
+
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

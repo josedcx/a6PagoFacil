@@ -3,9 +3,13 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Books} from '../_models';
 
+// Servicios de la app
 @Injectable({providedIn: 'root'})
 export class BookService {
-    constructor(private http: HttpClient) {   }
+    constructor(private http: HttpClient) {
+    }
+
+    //Se establece la url base del WS suministrado.
     baseUrl: string = 'https://d7ka3nqya8.execute-api.us-east-2.amazonaws.com/dev/';
 
     getAll() {
@@ -40,6 +44,7 @@ export class BookService {
             }));
     }
 
+    // Se pasa los valor de ID (bookId) de libro a actualizar y los datos restantes en (book:Book)
     updateBook(bookId, book: Book) {
         return this.http.put(this.baseUrl + 'update/' + bookId, book);
     }
