@@ -49,7 +49,7 @@ export class BookService {
         return this.http.put(this.baseUrl + 'update/' + bookId, book);
     }
 
-    deleteBook(id: number) {
+    deleteBook(id: string) {
         return this.http.delete(this.baseUrl + 'delete/' + id);
     }
 
