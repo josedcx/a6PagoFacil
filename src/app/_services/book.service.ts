@@ -38,14 +38,14 @@ export class BookService {
 
     }
 
-    createBook(book: Book) {
+    createBook(book: Books) {
         return this.http.post<any>(this.baseUrl + 'create', book)
             .pipe(map(res => {
             }));
     }
 
     // Se pasa los valor de ID (bookId) de libro a actualizar y los datos restantes en (book:Book)
-    updateBook(bookId, book: Book) {
+    updateBook(bookId, book: Books) {
         return this.http.put(this.baseUrl + 'update/' + bookId, book);
     }
 

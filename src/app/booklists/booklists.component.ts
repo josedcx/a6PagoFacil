@@ -18,7 +18,7 @@ export class BooklistsComponent implements OnInit {
             );
     }
 
-    deleteBook(book: Book): void {
+    deleteBook(book: Books): void {
         console.log(book);
         this.userService.deleteBook(book.id)
             .subscribe(data => {
@@ -26,7 +26,7 @@ export class BooklistsComponent implements OnInit {
             })
     };
 
-    editBook(book: Book): void {
+    editBook(book: Books): void {
         localStorage.removeItem("editBookId");
         localStorage.setItem("editBookId", book.id.toString());
         this.router.navigate(['edit-book']);
